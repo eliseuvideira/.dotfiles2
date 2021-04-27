@@ -1,0 +1,7 @@
+[user]
+	email = eliseuvideira1@gmail.com
+	name = Eliseu Videira
+[core]
+	editor = nvim
+[init]
+	defaultBranch = master
