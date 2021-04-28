@@ -1,3 +1,2 @@
-# using nvim
-alias vi=nvim
-alias vim=nvim
+alias vi="nvim"
+alias vim="nvim"
