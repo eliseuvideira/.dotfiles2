@@ -1,4 +1,3 @@
-"
 "                      █
 "           ▐▌   ▐▌    ▀
 "▗▟██▖ ▟█▙ ▐███ ▐███  ██  ▐▙██▖ ▟█▟▌▗▟██▖
@@ -7,7 +6,6 @@
 "▐▄▄▟▌▝█▄▄▌ ▐▙▄  ▐▙▄ ▗▄█▄▖▐▌ ▐▌▝█▄█▌▐▄▄▟▌
 " ▀▀▀  ▝▀▀   ▀▀   ▀▀ ▝▀▀▀▘▝▘ ▝▘ ▞▀▐▌ ▀▀▀
 "                               ▜█▛▘
-"
 
 " ｌｅａｄｅｒ
 let mapleader=" "
@@ -18,7 +16,6 @@ set expandtab tabstop=2 shiftwidth=2
 " ｌｉｎｅ  ｎｕｍｂｅｒｓ
 set number relativenumber
 
-"
 "      ▗▄▖              █
 "      ▝▜▌              ▀
 " ▐▙█▙  ▐▌  ▐▌ ▐▌ ▟█▟▌ ██  ▐▙██▖▗▟██▖
@@ -27,7 +24,6 @@ set number relativenumber
 " ▐█▄█▘ ▐▙▄ ▐▙▄█▌▝█▄█▌▗▄█▄▖▐▌ ▐▌▐▄▄▟▌
 " ▐▌▀▘   ▀▀  ▀▀▝▘ ▞▀▐▌▝▀▀▀▘▝▘ ▝▘ ▀▀▀
 " ▐▌              ▜█▛▘
-"
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -48,7 +44,6 @@ let g:NERDTreeShowHidden=1
 " ｖｓｃｏｄｅ  ｔｈｅｍｅ
 colorscheme codedark
 
-"
 "                      █
 "                      ▀
 "▐█▙█▖ ▟██▖▐▙█▙ ▐▙█▙  ██  ▐▙██▖ ▟█▟▌▗▟██▖
@@ -57,7 +52,6 @@ colorscheme codedark
 "▐▌█▐▌▐▙▄█▌▐█▄█▘▐█▄█▘▗▄█▄▖▐▌ ▐▌▝█▄█▌▐▄▄▟▌
 "▝▘▀▝▘ ▀▀▝▘▐▌▀▘ ▐▌▀▘ ▝▀▀▀▘▝▘ ▝▘ ▞▀▐▌ ▀▀▀
 "          ▐▌   ▐▌              ▜█▛▘
-"
 
 " ｃｔｒｌ＋ｓ  ｔｏ  ｓａｖｅ
 nmap <c-s> :w<CR>
@@ -77,7 +71,6 @@ nnoremap ss S
 
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 
-"
 "  ▄▄                       █
 " ▐▛▀                 ▐▌    ▀
 "▐███ ▐▌ ▐▌▐▙██▖ ▟██▖▐███  ██   ▟█▙ ▐▙██▖▗▟██▖
@@ -85,8 +78,6 @@ nnoremap <Leader>f :NERDTreeToggle<Enter>
 " ▐▌  ▐▌ ▐▌▐▌ ▐▌▐▌    ▐▌    █  ▐▌ ▐▌▐▌ ▐▌ ▀▀█▖
 " ▐▌  ▐▙▄█▌▐▌ ▐▌▝█▄▄▌ ▐▙▄ ▗▄█▄▖▝█▄█▘▐▌ ▐▌▐▄▄▟▌
 " ▝▘   ▀▀▝▘▝▘ ▝▘ ▝▀▀   ▀▀ ▝▀▀▀▘ ▝▀▘ ▝▘ ▝▘ ▀▀▀
-"
-"
 
 function TrimTrailingWhiteSpace()
   %s/\s\+$//e
@@ -97,7 +88,6 @@ function TrimTrailingNewLine()
   %s/\n\+\%$//e
 endfunction
 
-"
 "                                 ▗▖
 "           ▐▌                    ▐▌
 " ▟██▖▐▌ ▐▌▐███  ▟█▙  ▟██▖▐█▙█▖ ▟█▟▌
@@ -105,7 +95,6 @@ endfunction
 "▗█▀▜▌▐▌ ▐▌ ▐▌  ▐▌ ▐▌▐▌   ▐▌█▐▌▐▌ ▐▌
 "▐▙▄█▌▐▙▄█▌ ▐▙▄ ▝█▄█▘▝█▄▄▌▐▌█▐▌▝█▄█▌
 " ▀▀▝▘ ▀▀▝▘  ▀▀  ▝▀▘  ▝▀▀ ▝▘▀▝▘ ▝▀▝▘
-"
 
 " ＴｒｉｍＴｒａｉｌｅｒＷｈｉｔｅＳｐａｃｅ  ｏｎ  ｓａｖｅ
 autocmd BufWritePre * :call TrimTrailingWhiteSpace()
