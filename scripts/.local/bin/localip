@@ -1,2 +1,2 @@
 #!/bin/sh
-ip -o -4 addr show scope global | head -1 | while read -r num dev fam addr rest; do echo ${addr%/*}; done
+ip -4 addr show dev $(ip -4 route show | grep default | grep -Eo 'dev [A-Za-z0-9]+' | awk '{print $2}') | awk '/inet/{print $2}' | awk -F/ '{print $1}'
