@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpv "$1" --no-video >>/dev/null
