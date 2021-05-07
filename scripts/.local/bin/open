@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ "$#" -eq '0' ]; then
+  xargs -n1 xdg-open
+else
+  for arg; do
+    xdg-open "$arg"
+  done
+fi
