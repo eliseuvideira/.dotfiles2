@@ -9,5 +9,5 @@
 # exports
 #
 
-export EDITOR="vim"
+export EDITOR="vi"
 [ -f "/opt/google/chrome/chrome" ] && export BROWSER="/opt/google/chrome/chrome"
