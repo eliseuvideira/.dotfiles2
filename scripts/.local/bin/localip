@@ -1,0 +1,2 @@
+#!/bin/sh
+ip -o -4 addr show scope global | head -1 | while read -r num dev fam addr rest; do echo ${addr%/*}; done
