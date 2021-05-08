@@ -1,3 +1,7 @@
+#
+# ~/.bash_aliases
+#
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -25,3 +29,6 @@ alias chown="chown --preserve-root"
 
 alias vi="nvim"
 alias vim="nvim"
+
+alias free='free -m'
+alias more=less
