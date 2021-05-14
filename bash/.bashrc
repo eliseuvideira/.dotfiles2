@@ -28,16 +28,3 @@ if type -P dircolors >/dev/null; then
     eval $(dircolors -b "/etc/DIR_COLORS")
   fi
 fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-export PATH="$PATH:$(yarn global bin)"
-
-export DENO_INSTALL="/home/eliseu/.deno"
-
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-export EDITOR="vim"
-[ -f "/opt/google/chrome/chrome" ] && export BROWSER="/opt/google/chrome/chrome"
