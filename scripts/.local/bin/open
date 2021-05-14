@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -t 0 ]; then
-  xargs -n1 xdg-open
+  xargs -n1 -d '\n' xdg-open
 else
   for arg; do
     xdg-open "$arg"
