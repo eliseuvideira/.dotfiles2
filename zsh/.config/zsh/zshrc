@@ -1,0 +1,12 @@
+#!/bin/zsh
+[ -r "$XDG_CONFIG_HOME/shell/aliases" ] &&
+  source "$XDG_CONFIG_HOME/shell/aliases"
+
+ZSH_THEME="robbyrussell"
+
+CASE_SENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
+
+plugins=(git)
+
+source "$ZSH/oh-my-zsh.sh"
