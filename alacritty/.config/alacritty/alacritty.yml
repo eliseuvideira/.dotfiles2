@@ -36,3 +36,22 @@ colors:
     magenta: "0x614a73"
     cyan: "0x186c60"
     white: "0x63686d"
+
+font:
+  normal:
+    family: Fira Mono
+    style: Regular
+
+  bold:
+    family: Fira Mono
+    style: Bold
+
+  italic:
+    family: Fira Mono
+    style: Italic
+
+  bold_italic:
+    family: Fira Mono
+    style: Bold Italic
+
+  size: 10
