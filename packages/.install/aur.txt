@@ -1,5 +1,0 @@
-azuredatastudio-bin
-google-chrome
-insomnia-bin
-toilet
-visual-studio-code-bin

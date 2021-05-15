@@ -1,7 +1,0 @@
-appimagelauncher
-ffmpeg
-figlet
-lolcat
-mpv
-neovim
-youtube-dl

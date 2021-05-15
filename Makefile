@@ -9,11 +9,11 @@ nvim: core
 	stow --no-folding -t ~ nvim
 scripts:
 	stow --no-folding -t ~ scripts
-zsh: core nvm
+zsh: core
 	"./.installs/$(DISTRO)/zsh" && rm ~/.zshrc && stow --no-folding -t ~ zsh
 core:
 	"./.installs/$(DISTRO)/core"
-nvm: core
+nvm: core zsh
 	"./.installs/$(DISTRO)/nvm"
 yarn: core nvm
 	"./.installs/$(DISTRO)/yarn"
