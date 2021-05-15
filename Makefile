@@ -1,11 +1,27 @@
 DISTRO:=$(shell ./.functions/get_distro)
 
-.PHONY: alacritty git nvim scripts zsh distro stow
+.PHONY:	base
+.PHONY:	git
+.PHONY:	vim
+.PHONY:	zsh
+.PHONY:	scripts
+.PHONY:	core
+.PHONY:	nvm
+.PHONY:	yarn
+.PHONY:	node
+.PHONY:	ctop
+.PHONY:	docker-compose
+.PHONY:	docker
+.PHONY:	alacritty
+.PHONY:	scripts-desktop
+.PHONY:	arch-desktop
+.PHONY:	arch-server
+.PHONY:	debian-server
 
 base:
 ifeq ($(shell id -u), 0)
 	@echo "This script must NOT be run as root"
-else 
+else
 	"./.installs/$(DISTRO)/base"
 endif
 
