@@ -1,11 +1,35 @@
 #!/bin/sh
+
 SCRIPT_DIR="$(dirname "$0")"
-sudo pacman -Sy
-sudo pacman -S --needed --noconfirm base-devel $(cat "$SCRIPT_DIR/../core_packages")
+
+missing_groups() {
+  TMP1=$(mktemp)
+  TMP2=$(mktemp)
+  sort "$SCRIPT_DIR/.core_groups" >"$TMP1"
+  pacman -Qg | awk '{print $1}' | sort | uniq >"$TMP2"
+  comm -23 "$TMP1" "$TMP2"
+  rm "$TMP1" "$TMP2" >/dev/null 2>&1
+}
+
+missing_packages() {
+  TMP1=$(mktemp)
+  TMP2=$(mktemp)
+  sort "$SCRIPT_DIR/.core_packages" >"$TMP1"
+  pacman -Q | awk '{print $1}' | sort >"$TMP2"
+  comm -23 "$TMP1" "$TMP2"
+  rm "$TMP1" "$TMP2" >/dev/null 2>&1
+}
+
+MISSING_GROUPS=$(missing_groups)
+MISSING_PACKAGES=$(missing_packages)
+
+if [ "$MISSING_PACKAGES" != "" ] || [ "$MISSING_GROUPS" != "" ]; then
+  sudo pacman -Sy
+  sudo pacman -S --needed --noconfirm $MISSING_GROUPS $MISSING_PACKAGES
+fi
 
 if [ ! -d /opt/yay ]; then
   sudo git clone https://aur.archlinux.org/yay.git /opt/yay
   sudo chown "$(id -u):$(id -g)" /opt/yay
-  (cd /opt/yay; yes | makepkg -si)
-  yes | yay
+  (cd /opt/yay && yes | makepkg -si) && yes | yay
 fi

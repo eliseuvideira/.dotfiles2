@@ -1,6 +1,11 @@
 DISTRO:=$(shell ./.functions/get_distro)
 
 .PHONY: alacritty git nvim scripts zsh distro stow
+
+# core packages
+core:
+	"./.installs/$(DISTRO)/core"
+
 alacritty: core
 	stow --no-folding -t ~ alacritty
 git:
@@ -11,8 +16,6 @@ scripts:
 	stow --no-folding -t ~ scripts
 zsh: core
 	"./.installs/$(DISTRO)/zsh" && rm ~/.zshrc && stow --no-folding -t ~ zsh
-core:
-	"./.installs/$(DISTRO)/core"
 nvm: core zsh
 	"./.installs/$(DISTRO)/nvm"
 yarn: core nvm
