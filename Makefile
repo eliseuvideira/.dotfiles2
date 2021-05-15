@@ -19,5 +19,8 @@ yarn: core nvm
 	"./.installs/$(DISTRO)/yarn"
 node: core nvm yarn
 	"./.installs/$(DISTRO)/node"
-desktop: core
+desktop: core nvm yarn node zsh alacritty git nvim scripts ctop
 	"./.installs/$(DISTRO)/desktop"
+ctop: core
+	"./.installs/.scripts/ctop"
+server: core nvim yarn node zsh git nvim scripts ctop
