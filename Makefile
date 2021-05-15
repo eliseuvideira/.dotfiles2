@@ -19,3 +19,5 @@ yarn: core nvm
 	"./.installs/$(DISTRO)/yarn"
 node: core nvm yarn
 	"./.installs/$(DISTRO)/node"
+desktop: core
+	"./.installs/$(DISTRO)/desktop"

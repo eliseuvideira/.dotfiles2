@@ -1,0 +1,5 @@
+#!/bin/sh
+SCRIPT_DIR="$(dirname "$0")"
+sudo pacman -Sy
+sudo pacman -S --needed --noconfirm appimagelauncher chromium $(cat "$SCRIPT_DIR/../desktop_packages")
+yay -S --needed --noconfirm $(cat "$SCRIPT_DIR/../arch_packages")
