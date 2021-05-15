@@ -23,17 +23,14 @@ scripts: base
 
 core: base git vim zsh scripts
 
-# nvm
-nvm: core zsh
-	"./.installs/.scripts/nvm"
+nvm: core
+	./.installs/.scripts/nvm
 
-# yarn
 yarn: core nvm
 	"./.installs/$(DISTRO)/yarn"
 
-# node
 node: core nvm yarn
-	"./.installs/.scripts/node"
+	./.installs/.scripts/node
 
 # alacritty
 alacritty: core
