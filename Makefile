@@ -2,26 +2,21 @@ DISTRO:=$(shell ./.functions/get_distro)
 
 .PHONY: alacritty git nvim scripts zsh distro stow
 
-# base installs for each distro
 base:
-	"./.installs/$(DISTRO)/core"
+	"./.installs/$(DISTRO)/base"
 
-# git config
-git:
+git: base
 	stow --no-folding -t ~ git
 
-# vim config
 vim: base
 	stow --no-folding -t ~ nvim
 
 zsh: bash
 	"./.installs/.scripts/zsh" && rm ~/.zshrc && stow --no-folding -t ~ zsh
 
-# scripts
 scripts: base
 	stow --no-folding -t ~ scripts
 
-# core basics
 core: base git vim zsh scripts
 
 # nvm
