@@ -1,35 +1,57 @@
 #!/bin/sh
 
-SCRIPT_DIR="$(dirname "$0")"
+script_dir="$(dirname "$0")"
+group_base_file="$script_dir/.base_groups"
+package_base_file="$script_dir/.base_packages"
+
+groups_base() {
+  sort "$group_base_file"
+}
+
+groups_installed() {
+  pacman -Qg | awk '{print $1}' | sort | uniq
+}
+
+packages_base() {
+  sort "$package_base_file"
+}
+
+packages_installed() {
+  pacman -Q | awk '{print $1}' | sort
+}
 
 missing_groups() {
-  TMP1=$(mktemp)
-  TMP2=$(mktemp)
-  sort "$SCRIPT_DIR/.core_groups" >"$TMP1"
-  pacman -Qg | awk '{print $1}' | sort | uniq >"$TMP2"
-  comm -23 "$TMP1" "$TMP2"
-  rm "$TMP1" "$TMP2" >/dev/null 2>&1
+  base=$(mktemp)
+  installed=$(mktemp)
+  groups_base >"$base"
+  groups_installed >"$installed"
+  comm -23 "$base" "$installed"
+  rm "$base" "$installed" >/dev/null 2>&1
 }
 
 missing_packages() {
-  TMP1=$(mktemp)
-  TMP2=$(mktemp)
-  sort "$SCRIPT_DIR/.core_packages" >"$TMP1"
-  pacman -Q | awk '{print $1}' | sort >"$TMP2"
-  comm -23 "$TMP1" "$TMP2"
-  rm "$TMP1" "$TMP2" >/dev/null 2>&1
+  base=$(mktemp)
+  installed=$(mktemp)
+  packages_base >"$base"
+  packages_installed >"$installed"
+  comm -23 "$base" "$installed"
+  rm "$base" "$installed" >/dev/null 2>&1
 }
 
-MISSING_GROUPS=$(missing_groups)
-MISSING_PACKAGES=$(missing_packages)
+groups=$(missing_groups)
+packages=$(missing_packages)
 
-if [ "$MISSING_PACKAGES" != "" ] || [ "$MISSING_GROUPS" != "" ]; then
+if [ "$packages" != "" ] || [ "$groups" != "" ]; then
   sudo pacman -Sy
-  sudo pacman -S --needed --noconfirm $MISSING_GROUPS $MISSING_PACKAGES
+  sudo pacman -S --needed --noconfirm $groups $packages
 fi
 
-if [ ! -d /opt/yay ]; then
+install_yay() {
   sudo git clone https://aur.archlinux.org/yay.git /opt/yay
   sudo chown "$(id -u):$(id -g)" /opt/yay
   (cd /opt/yay && yes | makepkg -si) && yes | yay
+}
+
+if [ ! -d /opt/yay ]; then
+  install_yay
 fi
