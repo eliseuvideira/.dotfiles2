@@ -1,2 +1,6 @@
 #!/bin/sh
+has_yarn="$(pacman -Q | grep ^yarn)"
+
+[ "$has_yarn" != "" ] && exit
+
 sudo pacman -Sy && sudo pacman -S --needed --noconfirm yarn

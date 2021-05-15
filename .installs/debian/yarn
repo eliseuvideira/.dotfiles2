@@ -1,4 +1,8 @@
 #!/bin/sh
+has_docker="$(dpkg --list | awk '{print $2}' | sed 's/:.*//' | tail +6 | grep ^yarn)"
+
+[ "$has_yarn" != "" ] && exit
+
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install -y --no-install-recommends yarn
