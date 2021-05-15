@@ -1,4 +1,19 @@
 #!/bin/sh
+
 SCRIPT_DIR="$(dirname "$0")"
-sudo apt-get update
-sudo apt-get install -y gnupg2 $(cat "$SCRIPT_DIR/../core_packages")
+
+missing_packages() {
+  TMP1=$(mktemp)
+  TMP2=$(mktemp)
+  sort "$SCRIPT_DIR/.core_packages" >"$TMP1"
+  dpkg --list | awk '{print $2}' | sed 's/:.*//' | tail +6 >"$TMP2"
+  comm -23 "$TMP1" "$TMP2"
+  rm "$TMP1" "$TMP2" >/dev/null 2>&1
+}
+
+MISSING_PACKAGES=$(missing_packages)
+
+if [ "$MISSING_PACKAGES" != "" ]; then
+  sudo apt-get update
+  sudo apt-get install -y $MISSING_PACKAGES
+fi

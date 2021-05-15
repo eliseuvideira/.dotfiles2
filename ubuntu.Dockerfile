@@ -1,5 +1,7 @@
 FROM ubuntu
 
+RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+
 RUN apt-get update
 
 RUN apt-get install -y sudo zsh
