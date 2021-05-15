@@ -15,13 +15,13 @@ nvim: core
 scripts:
 	stow --no-folding -t ~ scripts
 zsh: core
-	"./.installs/$(DISTRO)/zsh" && rm ~/.zshrc && stow --no-folding -t ~ zsh
+	"./.installs/.scripts/zsh" && rm ~/.zshrc && stow --no-folding -t ~ zsh
 nvm: core zsh
-	"./.installs/$(DISTRO)/nvm"
+	"./.installs/.scripts/nvm"
 yarn: core nvm
 	"./.installs/$(DISTRO)/yarn"
 node: core nvm yarn
-	"./.installs/$(DISTRO)/node"
+	"./.installs/.scripts/node"
 desktop: core nvm yarn node zsh alacritty git nvim scripts ctop
 	"./.installs/$(DISTRO)/desktop"
 ctop: core

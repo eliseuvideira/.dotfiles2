@@ -1,4 +1,4 @@
-#!/bin/sh
-source ~/.zprofile
-source ~/.zshrc
+#!/bin/zsh
+source "$HOME/.zprofile"
+source "$HOME/.zshrc"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
