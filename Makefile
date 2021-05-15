@@ -3,7 +3,11 @@ DISTRO:=$(shell ./.functions/get_distro)
 .PHONY: alacritty git nvim scripts zsh distro stow
 
 base:
+ifeq ($(shell id -u), 0)
+	@echo "This script must NOT be run as root"
+else 
 	"./.installs/$(DISTRO)/base"
+endif
 
 git: base
 	stow --no-folding -t ~ git
@@ -11,8 +15,8 @@ git: base
 vim: base
 	stow --no-folding -t ~ nvim
 
-zsh: bash
-	"./.installs/.scripts/zsh" && rm ~/.zshrc && stow --no-folding -t ~ zsh
+zsh: base
+	./.installs/.scripts/zsh && rm ~/.zshrc && stow --no-folding -t ~ zsh
 
 scripts: base
 	stow --no-folding -t ~ scripts

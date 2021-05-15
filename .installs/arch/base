@@ -43,13 +43,14 @@ packages=$(missing_packages)
 
 if [ "$packages" != "" ] || [ "$groups" != "" ]; then
   sudo pacman -Sy
+  # shellcheck disable=SC2086
   sudo pacman -S --needed --noconfirm $groups $packages
 fi
 
 install_yay() {
   sudo git clone https://aur.archlinux.org/yay.git /opt/yay
   sudo chown "$(id -u):$(id -g)" /opt/yay
-  (cd /opt/yay && yes | makepkg -si) && yes | yay
+  (cd /opt/yay && yes | makepkg -si)
 }
 
 if [ ! -d /opt/yay ]; then
