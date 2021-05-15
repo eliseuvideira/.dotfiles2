@@ -16,6 +16,6 @@ core:
 nvm: core
 	"./.installs/$(DISTRO)/nvm"
 yarn: core nvm
-	echo hello
+	"./.installs/$(DISTRO)/yarn"
 node: core nvm yarn
-	echo hello
+	"./.installs/$(DISTRO)/node"
