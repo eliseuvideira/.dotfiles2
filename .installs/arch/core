@@ -1,0 +1,4 @@
+#!/bin/sh
+SCRIPT_DIR="$(dirname "$0")"
+sudo pacman -Sy
+sudo pacman -S --needed --noconfirm base-devel $(cat "$SCRIPT_DIR/../core_packages")

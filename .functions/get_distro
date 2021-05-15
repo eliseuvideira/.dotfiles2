@@ -1,0 +1,4 @@
+#!/bin/sh
+ID_LIKE=$(cat /etc/*release | grep ^ID_LIKE= | sed 's/^ID_LIKE=//')
+ID=$(cat /etc/*release | grep ^ID= | sed 's/^ID=//')
+echo ${ID_LIKE:-$ID}
