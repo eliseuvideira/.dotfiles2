@@ -1,14 +1,8 @@
 curl
-ffmpeg
-figlet
 git
 less
-lolcat
-mpv
 neovim
 stow
 tmux
 wget
-youtube-dl
 zsh
-noto-fonts
