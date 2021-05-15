@@ -32,24 +32,24 @@ yarn: core nvm
 node: core nvm yarn
 	./.installs/.scripts/node
 
-# alacritty
-alacritty: core
-	stow --no-folding -t ~ alacritty
-
-# ctop
 ctop: core
 	"./.installs/.scripts/ctop"
 
-# scripts-desktop
+docker-compose: core ctop
+	./.installs/.scripts/docker-compose
+
+docker: core ctop docker-compose
+	"./.installs/$(DISTRO)/docker"
+
+alacritty: core
+	stow --no-folding -t ~ alacritty
+
 scripts-desktop: base
 	stow --no-folding -t ~ scripts-desktop
 
-# desktop
-desktop:
+arch-desktop: core docker node alacritty scripts-desktop
 	"./.installs/arch/desktop"
 
-arch-server: core
+arch-server: core docker node
 
-arch-desktop: core alacritty scripts-desktop desktop
-
-debian-server: core
+debian-server: core docker node

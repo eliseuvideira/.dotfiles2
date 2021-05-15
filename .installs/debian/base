@@ -1,19 +1,28 @@
 #!/bin/sh
 
-SCRIPT_DIR="$(dirname "$0")"
+script_dir="$(dirname "$0")"
+package_base_file="$script_dir/.base_packages"
 
-missing_packages() {
-  TMP1=$(mktemp)
-  TMP2=$(mktemp)
-  sort "$SCRIPT_DIR/.core_packages" >"$TMP1"
-  dpkg --list | awk '{print $2}' | sed 's/:.*//' | tail +6 >"$TMP2"
-  comm -23 "$TMP1" "$TMP2"
-  rm "$TMP1" "$TMP2" >/dev/null 2>&1
+packages_base() {
+  sort "$package_base_file"
 }
 
-MISSING_PACKAGES=$(missing_packages)
+packages_installed() {
+  dpkg --list | awk '{print $2}' | sed 's/:.*//' | tail +6 | sort
+}
 
-if [ "$MISSING_PACKAGES" != "" ]; then
+missing_packages() {
+  base=$(mktemp)
+  installed=$(mktemp)
+  packages_base >"$base"
+  packages_installed >"$installed"
+  comm -23 "$base" "$installed"
+  rm "$base" "$installed" >/dev/null 2>&1
+}
+
+packages=$(missing_packages)
+
+if [ "$packages" != "" ]; then
   sudo apt-get update
-  sudo apt-get install -y $MISSING_PACKAGES
+  sudo apt-get install -y $packages
 fi

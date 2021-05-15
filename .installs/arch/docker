@@ -1,0 +1,10 @@
+#!/bin/sh
+has_docker="$(pacman -Q | awk '{print $1}' | grep docker)"
+
+if [ "$has_docker" != "" ]; then
+  exit
+fi
+
+sudo pacman -S --noconfirm --needed docker
+sudo systemctl start docker
+sudo systemctl enable docker
