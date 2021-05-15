@@ -2,3 +2,10 @@
 SCRIPT_DIR="$(dirname "$0")"
 sudo pacman -Sy
 sudo pacman -S --needed --noconfirm base-devel $(cat "$SCRIPT_DIR/../core_packages")
+
+if [ ! -d /opt/yay ]; then
+  sudo git clone https://aur.archlinux.org/yay.git /opt/yay
+  sudo chown "$(id -u):$(id -g)" /opt/yay
+  (cd /opt/yay; yes | makepkg -si)
+  yes | yay
+fi

@@ -1,5 +1,6 @@
 curl
 git
+less
 neovim
 stow
 zsh
